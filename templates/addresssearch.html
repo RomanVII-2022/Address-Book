@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+              <h4 class="text-center"><strong>Results for {{search}}...</strong></h4><hr>
+              <a href="{% url 'createaddress' %}" class="btn btn-secondary"><span><i class="ion-ios-compose-outline"></i> Register Address</span></a>   
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Created On</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      {% for address in address_list %}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{address.first_name}}</td>
+                        <td>{{address.last_name}}</td>
+                        <td>{{address.email}}</td>
+                        <td>{{address.phone}}</td>
+                        <td>{{address.address}}</td>
+                        <td>{{address.created_on}}</td>
+                        <td><a href="{% url 'editaddress' address.id %}" class="btn btn-primary"><span><i class="ion-android-create"></i> Edit </span></a> | <a href="{% url 'deleteaddress' address.id %}" class="btn btn-danger"><span><i class="ion-android-delete"></i> Delete </span></a></td>
+                      </tr>
+                      {% endfor %}
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

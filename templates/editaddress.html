@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Edit Address | My Address Book {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                  <h5 class="text-center"><strong>Edit Address</strong></h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label"><strong>First Name:</strong></label>
+                            {{form.first_name}}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Last Name:</strong></label>
+                            {{form.last_name}}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Email</strong></label>
+                            {{form.email}}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Phone Number</strong></label>
+                            {{form.phone}}
+                            {% if form.phone.errors %}
+                            <div id="emailHelp" class="form-text text-danger">{{form.phone.errors}}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Address</strong></label>
+                            {{form.address}}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Address</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
